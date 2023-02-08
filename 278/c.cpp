@@ -19,39 +19,32 @@ using namespace std;
 #define rrep(i, a, b) for (int i = a; i >= b; i--)
 #define fore(i, a) for (auto &i : a)
 using ll = long long;
-using P = pair<vector<ll>, bool>;
+using P = pair<ll, ll>;
 // const ll mod = 10e9+7;
 
 const int dx[4] = {1,0,-1,0};
 const int dy[4] = {0,1,0,-1};
 
+map<P,bool> mp;
 
 int main(){
-    ll n; cin>>n;
-    //グラフをmapでもっておくと楽
-    map<ll, vector<ll>> graph;
-    rep(i,0,n){
-        int a,b; cin>>a>>b;
-        graph[a].emplace_back(b);
-        graph[b].emplace_back(a);
-    }
-    queue<ll> que;
-    que.push(1);
-    set<int> S;
-    S.insert(1);
-    //幅優先探索->1に隣接している頂点を順に調べる
-    while(!que.empty()){
-        ll v = que.front();
-        que.pop();
-        for(auto i : graph[v]){ //i:=vに連結している要素
-            //まだiが未探索である場合
-            if(!S.count(i)){
-                que.push(i); //探索の順番待ち
-                S.insert(i);
+    ll n,q; cin>>n>>q;
+    rep(i,0,q){
+        ll t,a,b; 
+        cin >> t >> a >> b;
+        if(t==1) {
+            mp[P{a,b}] = true;
+        }
+        if(t==2) {
+            mp[P{a,b}] = false;
+        }
+        if(t==3){
+            if(mp[P{a,b}] and mp[P{b,a}]){
+                cout << "Yes" << endl;
+            } else {
+                cout << "No" << endl;
             }
         }
     }
-    //setは昇順に格納してくれているので、最後の値が1から辿れる最大値
-    cout << *S.rbegin() << endl;
     return 0;
 }

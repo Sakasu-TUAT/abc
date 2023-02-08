@@ -7,6 +7,12 @@
 #include <iomanip>
 #include <limits>
 #include <deque>
+#include <cmath>
+#include <iomanip>
+#include <limits>
+#include <deque>
+#include <set>
+#include <queue>
 #include <unordered_map>
 using namespace std;
 // #define rep(i,n) for(ll i=0; i<(n); ++i)
@@ -27,9 +33,31 @@ const int dy[4] = {0,1,0,-1};
 unordered_map<ll, ll> memo;
 
 int main(){
-    ll n,m; cin >> n >> m;
+    ll n;
+    vector<ll> a(n);
     rep(i,0,n){
-        
+        cin >> a[i];
+    }
+    vector<ll> a1(n, 1);
+    ll q;
+    vector<pair<ll, ll>> order;
+    ll allSum =0;
+    map<ll, ll> mp;
+
+    while(q--){
+        ll i=0;
+        int x; cin>>x;
+        if(x==1){
+            ll j; cin >> j;
+            allSum += j;
+        }
+        if(x==2){
+            ll i, j;
+            order.emplace_back(P{i,j});
+        }
+        if(x==3){
+
+        }
     }
     return 0;
 }

@@ -25,33 +25,35 @@ template<class T> inline bool chmin(T& a,T b) {if(a>b){a=b;return 1;} return 0;}
 const ll nmod = 998244353;
 
 int main(){
-	int n; cin>>n;
-	vector<string> a(n);
-	rep(i,0,n){
-		string s; cin>>s;
-		if(!(s[0]=='H' or s[0]=='D' or s[0]=='C' or s[0]=='S')){
-			cout << "No" << endl;
-			return 0;
-		}
-		if(!(s[1]=='A' or s[1]=='2' or s[1]=='3' or s[1]=='4' or s[1]=='5' or s[1]=='6'
-		 	or s[1]=='7' or s[1]=='8' or s[1]=='9'  or s[1]=='T' or  s[1]=='J' or s[1]=='Q' or s[1]=='K')){
-			cout << "No" << endl;
-			return 0;
-		}
-		a[i] = s;
-	}
-	if(n==1){
-		cout << "Yes" << endl;
-		return 0;
-	}
-	rep(i,0,n-1){
-		rep(j,i+1,n){
-			if(a[i]==a[j]){
-				cout << "No" << endl;
+	int h,m;
+	cin >>h>>m;
+	int a = h/10, b = h%10, c = m/10, d = m%10;
+	if(0<=b*10+d and b*10+d<=59 and 0<=a*10+c and a*10+c<=23){ 
+		cerr << "sonomanma" << endl;
+		cout << h <<" " << m << endl;
+	} else{
+		while(1){
+			int CAd = (d+1)/10;
+			d=(d+1)%10;
+			int CAc = (c+CAd)/6;
+			c=(c+CAd)%6;
+			int CAb=0;
+			if(a==0 or a==1) {
+				CAb = (b+CAc)/10;
+				b=(b+CAc)%10;
+			}
+			else {
+				CAb = (b+CAc)/4;
+				b=(b+CAc)%4;
+			}
+			a = (a+CAb)%3; 
+			// cerr << a << b << " " << c << d << endl;
+			if(0<=b*10+d and b*10+d<=59 and 0<=a*10+c and a*10+c<=23){
+				cout << a << b << " " << c << d;
 				return 0;
 			}
 		}
-	}
-		cout << "Yes" << endl;
-		return 0;
+	} 
+
+	return 0;
 }

@@ -6,6 +6,9 @@
 #include <cmath>
 #include <iomanip>
 #include <limits>
+#include <deque>
+#include <set>
+#include <queue>
 using namespace std;
 // #define rep(i,n) for(ll i=0; i<(n); ++i)
 #define Out(x) cout << x << endl
@@ -22,12 +25,19 @@ using P = pair<string, string>;
 
 int main(){
     int n,x; cin>>n>>x;
+    queue<int> ans;
     rep(i,0,n){
-        int p; cin>>p;
-        if(p==x){
-            cout << i+1 << endl;
-            return 0;
-        }
+        int a; cin>>a;
+        ans.push(a);
+    }
+    rep(i,0,x){
+        ans.pop();
+        ans.push(0);
+    }
+    rep(i,0,n){
+        int a = ans.front();
+        ans.pop();
+        cout << a << " ";
     }
     return 0;
 }
