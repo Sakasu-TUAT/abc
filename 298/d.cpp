@@ -9,7 +9,7 @@ using mint = modint998244353;
 int main(){
 	int q;
     cin >> q;
-    deque<int> d(1, 1);
+    deque<int> d(1, 1);   //1を一つ持つの意
     mint ans = 1;
     while(q--){
         int i; cin >> i;
